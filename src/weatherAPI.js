@@ -5,7 +5,8 @@ export class WeatherAPI {
         const include = "days";
         const contentType = "json";
         const key = "JVPA3DTUBH89G6V3TDH73NM69";
-        const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${startDate}?unitGroup=${unitGroup}&include=${include}&contentType=${contentType}&key=${key}`
+        const iconSet = "icons2";
+        const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${startDate}?unitGroup=${unitGroup}&include=${include}&contentType=${contentType}&iconSet=${iconSet}&key=${key}`
 
         try {
             const response = await fetch(url);

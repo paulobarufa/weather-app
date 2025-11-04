@@ -14,4 +14,5 @@ export class Day {
         this.minfeels = jsonObj.feelslikemin;
         this.maxfeels = jsonObj.feelslikemax;
     }
+    
 }
