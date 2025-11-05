@@ -15,7 +15,6 @@ export class WeatherAPI {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const weatherData = await response.json();
-            console.log(weatherData);
             return weatherData;
         } catch (error) {
             console.error('Error fetching weather data:', error);

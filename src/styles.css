@@ -72,14 +72,30 @@ body {
 
 /* Main-content styling */
 .content-wrapper {
-    /*display: none;*/
+    display: none;
     height: 100%;
     width: 100%;
+}
+
+.loading-wrapper {
+    display: none;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-icon {
+    opacity: 10%;
+    height: 300px;
 }
 
 .location-title {
     color: var(--grey-text);
     margin-left: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 /* Day bar */

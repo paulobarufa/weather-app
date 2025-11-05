@@ -1,12 +1,16 @@
 import { Weather } from "./weather";
 import { format } from "date-fns"
+import { WeatherAPI } from "./weatherAPI";
 
 export class ViewController {
 
-    constructor(weatherJson) {
-        this.weatherObj = new Weather(weatherJson);
+    constructor() {
         
         this.contentWrapper = document.querySelector(".content-wrapper")
+        this.loadingWrapper = document.querySelector(".loading-wrapper")
+
+        this.form = document.querySelector("form")
+        this.searchBar = document.querySelector("#search")
 
         this.locationTitle = document.querySelector(".location-title")
         this.dayBar = document.querySelectorAll(".day-box")
@@ -27,12 +31,38 @@ export class ViewController {
             this.dayBar[i].addEventListener("click", () => {this.updateContent(i)})
         }
 
-        this.updateLocation()
+        this.form.addEventListener("submit", (event) => {
+
+            this.setLoading();
+
+            const viewController = this;
+
+            const weatherData = WeatherAPI.getWeatherData(this.searchBar.value)
+            weatherData.then(function(data) {
+                setTimeout(() => {
+                    viewController.setContent();
+                    viewController.setWeatherObj(data);
+                }, 1500)
+            })
+            
+            event.preventDefault()
+        })
 
     }
 
-    setWeatherObj(weatherObj) {
-        this.weatherObj = weatherObj;
+    setWeatherObj(weatherJson) {
+        this.weatherObj = new Weather(weatherJson);
+        this.updateLocation()
+    }
+
+    setLoading() {
+        this.contentWrapper.style.display = "none";
+        this.loadingWrapper.style.display = "flex";
+    }
+
+    setContent() {
+        this.contentWrapper.style.display = "block";
+        this.loadingWrapper.style.display = "none";
     }
 
     updateContent(index) {
@@ -71,7 +101,7 @@ export class ViewController {
             iconNode.src = dayObj.monoicon
 
             const tempNode = dayNode.querySelector(".box-temp")
-            tempNode.innerHTML = `<b>${dayObj.maxtemp}</b> / ${dayObj.mintemp}`
+            tempNode.innerHTML = `<b>${Math.round(dayObj.maxtemp)}</b> / ${Math.round(dayObj.mintemp)}`
         }
 
         this.updateContent(0);
