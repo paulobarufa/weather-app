@@ -9,10 +9,15 @@ export class Day {
         this.description = jsonObj.description;
         this.monoicon = `${this.monoIconUrl}${jsonObj.icon}.svg`;
         this.coloricon = `${this.colorIconUrl}${jsonObj.icon}.svg`;
-        this.mintemp = jsonObj.tempmin;
-        this.maxtemp = jsonObj.tempmax;
-        this.minfeels = jsonObj.feelslikemin;
-        this.maxfeels = jsonObj.feelslikemax;
+        this.mintemp = Math.round(jsonObj.tempmin);
+        this.maxtemp = Math.round(jsonObj.tempmax);
+        this.minfeels = Math.round(jsonObj.feelslikemin);
+        this.maxfeels = Math.round(jsonObj.feelslikemax);
+
+        this.fmintemp = Math.round(jsonObj.tempmin * 9/5 + 32)
+        this.fmaxtemp = Math.round(jsonObj.tempmax * 9/5 + 32)
+        this.fminfeels = Math.round(jsonObj.feelslikemax * 9/5 + 32)
+        this.fmaxfeels = Math.round(jsonObj.feelslikemax * 9/5 + 32)
     }
     
 }

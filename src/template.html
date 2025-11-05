@@ -8,9 +8,17 @@
 <body>
     <div class="header">
         <div class="logo">DondeWeather.</div>
-        <form>
-            <input type="text" name="search" id="search" class="search-bar">
-        </form>
+        <div class="header-wrapper">
+            <form>
+                <input type="text" name="search" id="search" class="search-bar">
+            </form>
+            <p class="temp-switch">°C</p>
+            <label class="switch">
+                <input type="checkbox" id="temp-switch">
+                <span class="slider round"></span>
+            </label>
+            <p class="temp-switch">°F</p>
+        </div>
     </div>
     <div class="main-content">
         <div class="loading-wrapper">

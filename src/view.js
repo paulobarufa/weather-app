@@ -6,11 +6,14 @@ export class ViewController {
 
     constructor() {
         
+        this.fahrenheit = false;
+
         this.contentWrapper = document.querySelector(".content-wrapper")
         this.loadingWrapper = document.querySelector(".loading-wrapper")
 
         this.form = document.querySelector("form")
         this.searchBar = document.querySelector("#search")
+        this.tempSwitch = document.querySelector("#temp-switch")
 
         this.locationTitle = document.querySelector(".location-title")
         this.dayBar = document.querySelectorAll(".day-box")
@@ -48,6 +51,21 @@ export class ViewController {
             event.preventDefault()
         })
 
+        this.tempSwitch.addEventListener("change", () => {
+            this.fahrenheit = this.tempSwitch.checked;
+            const viewController = this;
+
+            if (this.weatherObj) {
+                let index = 0;
+                for (const dayObjEntries of this.dayBar.entries()) {
+                    if (dayObjEntries[1].classList.contains("active")) {
+                        index = dayObjEntries[0]
+                    }
+                }
+                viewController.updateLocation(index)
+            }
+        })
+
     }
 
     setWeatherObj(weatherJson) {
@@ -79,16 +97,18 @@ export class ViewController {
 
         this.largeIcon.src = dayObj.coloricon
         this.iconConditions.textContent = dayObj.conditions
-        
-        this.tempHighs.textContent = dayObj.maxtemp
-        this.tempLows.textContent = dayObj.mintemp
 
-        this.feelHighs.textContent = dayObj.maxfeels
-        this.feelLows.textContent = dayObj.minfeels
+        const degreeSymbol = this.fahrenheit ? " °F" : " °C";
+        
+        this.tempHighs.textContent = (this.fahrenheit ? dayObj.fmaxtemp : dayObj.maxtemp) + degreeSymbol
+        this.tempLows.textContent = (this.fahrenheit ? dayObj.fmintemp : dayObj.mintemp) + degreeSymbol
+
+        this.feelHighs.textContent = (this.fahrenheit ? dayObj.fmaxfeels : dayObj.maxfeels) + degreeSymbol
+        this.feelLows.textContent = (this.fahrenheit ? dayObj.fminfeels : dayObj.minfeels) + degreeSymbol
 
     }
 
-    updateLocation() {
+    updateLocation(index = 0) {
 
         for (let i=0; i < this.weatherObj.days.length-1; i++) {
             const dayObj = this.weatherObj.days[i]
@@ -101,10 +121,12 @@ export class ViewController {
             iconNode.src = dayObj.monoicon
 
             const tempNode = dayNode.querySelector(".box-temp")
-            tempNode.innerHTML = `<b>${Math.round(dayObj.maxtemp)}</b> / ${Math.round(dayObj.mintemp)}`
+            const maxTemp = this.fahrenheit ? dayObj.fmaxtemp : dayObj.maxtemp
+            const minTemp = this.fahrenheit ? dayObj.fmintemp : dayObj.mintemp
+            tempNode.innerHTML = `<b>${maxTemp}</b> / ${minTemp}`
         }
 
-        this.updateContent(0);
+        this.updateContent(index);
 
     }
 
