@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DondeWeather</title>
+<script defer src="main.js"></script></head>
+<body>
+    <div class="header">
+        <div class="logo">DondeWeather.</div>
+        <div class="header-wrapper">
+            <form>
+                <input type="text" name="search" id="search" class="search-bar">
+            </form>
+            <p class="temp-switch">°C</p>
+            <label class="switch">
+                <input type="checkbox" id="temp-switch">
+                <span class="slider round"></span>
+            </label>
+            <p class="temp-switch">°F</p>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="loading-wrapper">
+            <img src="https://cdn.pixabay.com/animation/2025/10/12/18/25/18-25-22-52_512.gif" class="loading-icon">
+        </div>
+        <div class="content-wrapper">
+            <h1 class="location-title"></h1>
+            <div class="day-bar">
+                <div class="day-box active">
+                    <p class="box-date"></p>
+                    <img alt="Box icon" class="box-icon">
+                    <p class="box-temp"></p>
+                </div>
+                <div class="day-box active">
+                    <p class="box-date"></p>
+                    <img alt="Box icon" class="box-icon">
+                    <p class="box-temp"></p>
+                </div>
+                <div class="day-box active">
+                    <p class="box-date"></p>
+                    <img alt="Box icon" class="box-icon">
+                    <p class="box-temp"></p>
+                </div>
+                <div class="day-box active">
+                    <p class="box-date"></p>
+                    <img alt="Box icon" class="box-icon">
+                    <p class="box-temp"></p>
+                </div>
+                <div class="day-box active">
+                    <p class="box-date"></p>
+                    <img alt="Box icon" class="box-icon">
+                    <p class="box-temp"></p>
+                </div>
+                <div class="day-box active">
+                    <p class="box-date"></p>
+                    <img alt="Box icon" class="box-icon">
+                    <p class="box-temp"></p>
+                </div>
+                <div class="day-box active">
+                    <p class="box-date"></p>
+                    <img alt="Box icon" class="box-icon">
+                    <p class="box-temp"></p>
+                </div>
+            </div>
+            <div class="content">
+                <div class="info-panel">
+                    <h2 class="content-date"></h2>
+                    <p class="content-description"></p>
+                </div>
+                <div class="icon-panel">
+                    <img src="https://raw.githubusercontent.com/visualcrossing/WeatherIcons/58c79610addf3d4d91471abbb95b05e96fb43019/SVG/2nd%20Set%20-%20Color/rain.svg" alt="Weather icon" class="large-icon">
+                    <p class="icon-conditions"></p>
+                </div>
+                <div class="temp-panel">
+                    <h3 class="temp-title">Temperature</h3>
+                    <div class="temp-highs">
+                        <p class="temp-text">DAILY HIGH</p>
+                        <p class="temp-temp" id="temp-highs"></p>
+                    </div>
+                    <div class="temp-lows">
+                        <p class="temp-text">DAILY LOW</p>
+                        <p class="temp-temp" id="temp-lows"></p>
+                    </div>
+                </div>
+                <div class="feels-panel">
+                    <h3 class="temp-title">Feels Like</h3>
+                    <div class="temp-highs">
+                        <p class="temp-text">DAILY HIGH</p>
+                        <p class="temp-temp" id="feel-highs"></p>
+                    </div>
+                    <div class="temp-lows">
+                        <p class="temp-text">DAILY LOW</p>
+                        <p class="temp-temp" id="feel-lows"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        Maulo Patos enterprises &copy; 2025
+    </div>
+</body>
+</html>
