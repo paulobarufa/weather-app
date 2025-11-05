@@ -1,6 +1,8 @@
 import "./styles.css";
 import { WeatherAPI } from "./weatherAPI";
+import { ViewController } from "./view";
 
-// unitgroup = us, metric
-
-WeatherAPI.getWeatherData("porto", "metric")
+const weatherData = WeatherAPI.getWeatherData("porto")
+weatherData.then(function(data) {
+    new ViewController(data);
+})
